@@ -1,0 +1,30 @@
+ <header>
+ <nav class="navbar navbar-light fixed-top " style="background-color: #17A589;">
+  <a class="navbar-brand" href="#"><font size="6" color="white"><img src="images/shield-lock.png" height="55" width="60">&nbspCSS</font></a>
+  <ul class="navbar-nav">
+      <li class="nav-item">
+         <font color="white" size="5">Hi, ${name}</font>
+      </li>
+  </ul>
+  <form  class="form-inline" action="search.do">
+    <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Type here.." aria-label="Search">
+    <button class="btn btn-outline-dark "  type="submit">Search</button>
+  </form>
+  <button align="right" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div align="right" class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+       <a class="nav-link" href="CSSList.do"><font color="white">Home</font></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="accountupdate.do"><font color="white">Account Update</font></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="logout.do"><font color="white">Logout</font></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+ </header>

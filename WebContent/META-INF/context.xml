@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource name="jdbc/Project" 
+			type="javax.sql.DataSource"
+			url="jdbc:mysql://localhost:3306/Project?autoReconnect=true&amp;allowMultiQueries=false"
+			driverClassName="com.mysql.jdbc.Driver"
+			username="root"
+			password="root">
+		
+	</Resource>
+</Context>

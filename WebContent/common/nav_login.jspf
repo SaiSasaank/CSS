@@ -1,0 +1,18 @@
+<header>
+ <nav class="navbar navbar-light fixed-top " style="background-color: #17A589;">
+  <a class="navbar-brand" href="#"><font size="6" color="white"><img src="images/shield-lock.png" height="55" width="60">&nbspCSS</font></a>
+  <button align="right" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div align="right" class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="register.do"><font color="white">Register</font></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="login.do"><font color="white">Login</font></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+ </header>
