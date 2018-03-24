@@ -28,7 +28,7 @@ public class CSSList extends HttpServlet {
 	Connection conn;
 	
 	private CSSService cssService = new CSSService();
-       
+    CSS css =new CSS();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//System.out.println(request.getSession().getAttribute("name"));
 		String name=(String) request.getSession().getAttribute("name");
@@ -38,7 +38,6 @@ public class CSSList extends HttpServlet {
 			LOG.trace("doGet : DBConnection Open");
 			conn = ds.getConnection();
 			LOG.info("doGet : Retrive todo list");
-			
 			request.setAttribute("css", cssService.retrieveCSS(name,conn));
 			LOG.info("doGet : Request from TodoServlet to csslist.jsp");
 			request.getRequestDispatcher("view/csshome.jsp").forward(request, response);

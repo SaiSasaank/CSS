@@ -1,5 +1,5 @@
 <header>
- <nav class="navbar navbar-light fixed-top " style="background-color: #17A589;">
+ <nav class="navbar navbar-light fixed-top " style="background-color: #839192;">
   <a class="navbar-brand" href="#"><font size="6" color="white"><img src="images/shield-lock.png" height="55" width="60">&nbspCSS</font></a>
   <button align="right" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 //import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import com.app.hashtool.*;
 import com.app.user.User;
 
 
@@ -41,17 +42,24 @@ public class LoginServlet extends HttpServlet {
 		try {
 			con=ds.getConnection(); //creates connection
 			//System.out.println("Connection successful");
-			boolean isUserValid = userValidation.isUserValid(name, password,user,con);
+			PasswordTool pt = new PasswordTool();
+			String salt = userValidation.getSaltDB(name,user,con);
+			System.out.println("salt in servlet"+salt);
+			String hash = pt.get_SHA_512_SecurePassword(password, salt);
+			System.out.println(hash);
+			boolean isUserValid = userValidation.isUserValid(name, hash,user,con);
 			if(isUserValid) {
+				
 				request.getSession().setAttribute("name", name);
+				request.getSession().setAttribute("email", user.getEmail());
 				request.getSession().setAttribute("csrfToken", generateCSRFToken());
 				String sessionid = request.getSession().getId();
 				response.setHeader("Set-Cookie", "JSESSIONID=" +  sessionid + ";");
 				response.sendRedirect("otp.do");
-			}
+				}					
 			else
 			{
-				request.setAttribute("error","Invalid Credentials");
+				request.setAttribute("error","Invalid Username or Password");
 				request.getRequestDispatcher("view/login.jsp").forward(request, response);
 			}
 		}

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 
+
 @WebServlet("/update.do")
 public class UpdateCSSServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -44,17 +45,12 @@ public class UpdateCSSServlet extends HttpServlet {
 		int css_id= Integer.parseInt(cssd);
 		String url=request.getParameter("url");
 		String username= request.getParameter("username");
-		String password= request.getParameter("password");
+		String password = request.getParameter("password");
 		String doc_num= request.getParameter("doc_num");
 		String val_date= request.getParameter("val_date");
 		String doc_name= request.getParameter("doc_name");
-		System.out.println(doc_name);
-		String c = request.getParameter("cvv");
-		int cvv;
-		if( !isStringInt(c) || c=="")
-			cvv=0;
-		else
-			cvv = Integer.parseInt(c);
+		System.out.println(password);
+		String cvv = request.getParameter("cvv");
 		String type_info= request.getParameter("type_info");
 		String nation= request.getParameter("nation");
 		String address= request.getParameter("address");
@@ -82,16 +78,4 @@ public class UpdateCSSServlet extends HttpServlet {
 		}
 
 	}
-	public boolean isStringInt(String s)
-	{
-	    try
-	    {
-	        Integer.parseInt(s);
-	        return true;
-	    } catch (NumberFormatException ex)
-	    {
-	        return false;
-	    }
-	}
-
 }

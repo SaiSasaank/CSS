@@ -1,4 +1,4 @@
-<%@include file="/common/header.jspf" %>
+<!--  <%@include file="/common/header.jspf" %>
 <%@include file="/common/nav_logout.jspf" %> 
 
 <div class="container">
@@ -83,4 +83,4 @@
 	</form>
 </div>
 </body>
-</html>
+</html>-->

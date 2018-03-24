@@ -2,8 +2,8 @@
 ‌​
 <%@include file="/common/header.jspf" %>
 <%@include file="/common/nav_logout.jspf" %> 
- 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link href="css/sidebar.css" rel="stylesheet">
  <style>
  .column1 {
 		overflow: hidden;
@@ -18,18 +18,40 @@
 		
 		padding: 10px;
 		width: 79%;
-}
+		
  </style>
+<div class="wrapper">
+
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Category</h3></div>
+        <ul class="list-unstyled components">
+            <li><a href="csssidebar.do?cat_id=1">Website</a></li>
+            <li><a href="csssidebar.do?cat_id=2">BankCard</a></li>
+            <li><a href="csssidebar.do?cat_id=3">Passport</a></li>
+            <li><a href="csssidebar.do?cat_id=4">AadharCard</a></li>
+            <li><a href="csssidebar.do?cat_id=5">License</a></li>
+            <li><a href="csssidebar.do?cat_id=6">Others</a></li>
+            <li><a data-toggle="modal" data-target="#registerUser" >Add New Credentials</a></li>
+        </ul>
+    </nav>
+<script>
+$(document).ready(function () {
+
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+
+});
+</script>
  <div class="container-fluid">
-	<br><br><br><br>
 		<p>
 		<font color="red">${errorMessage}</font>
 		</p>
 	
 	
 <div class="container-fluid">
-	<div class="column1">
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerUser" >Add New Credentials</button>
+	<!--  <div class="column1">
 			<table class="table table-striped">
 				<thead>
 					<th>Category </th>
@@ -43,21 +65,19 @@
 				</tbody>
 			</table>
 	</div>
-	<div  class="column2">
+	<div  class="column2">-->
+	<p>Your saved credentials are</p>
 		<table class="table table-striped">
-			<p>Your saved credentials are</p>
 				<thead>
 					<th>Reference</th>
-					<th>Name</th>
 					<th>Actions</th>
 				</thead>
 				<tbody>
 					<c:forEach items="${css}" var="css1">
 						<tr>
 						
-							<td>${css1.reference}</td>
-							<td>${css1.username}${css1.doc_name}</td>					
-							<td>&nbsp;&nbsp;<a class="btn btn-success btn-sm" href="show.do?css1=${css1 }&css_id=${css1.css_id}&cat_id=${css1.cat_id}" >Show</a>
+							<td>${css1.reference}</td>					
+							<td>&nbsp;&nbsp;<a class="btn btn-success btn-sm" href="show.do?css_id=${css1.css_id}&cat_id=${css1.cat_id}" >Show</a>
 					    	&nbsp;&nbsp;<button class="open-homeEvents btn btn-warning btn-sm" name="dbType" id="dbType" value="${css1.css_id}" data-id="${css1.css_id}" data-toggle="modal" data-target="#updateUser${css1.cat_id}" >Update</button><!--   <a href="update.do?css_id=${css1.css_id}?cat_id=${css1.cat_id}"></a>-->
 						    &nbsp;&nbsp;<a class="btn btn-danger btn-sm"	href="delete.do?css_id=${css1.css_id}">Delete</a>
 							</td>
@@ -66,7 +86,7 @@
 				</tbody>
 		</table>
 	</div>
-</div>
+<!--  </div>-->
 	
 	
 	
@@ -322,9 +342,8 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<p align="center">Your New Credential:</p>
-						<form method="POST" action="add.do">
 						<fieldset class="form-group">
-						<label>Select a Category</label><select class="form-control"  data-target=".my-info-1" name="category">
+						<label>Select a Category</label><select class="form-control"  data-target=".my-info-1">
 							<option >options..</option>
 							<option value="Website" data-show=".Website">Web-site</option>
 							<option value="BankCard" data-show=".BankCard">Credit/Debit Card</option>
@@ -334,48 +353,80 @@
 							<option value="Others" data-show=".Others">Others</option>
 							</select> <BR />
 						</fieldset>
-		
-						<fieldset class="form-group">
-							<label>Reference</label> <input name="reference" type="text" class="form-control" /> <BR />
-						</fieldset>
 						<div class="my-info-1">
 							<div class="Website hide" >
+								<form method="POST" action="add.do">
+								<label>Reference</label> <input name="reference" type="text" class="form-control" /> <BR />
 								<label>URL</label> <input name="url" type="text" class="form-control" /> <BR />
 								<label>Username</label> <input name="username" type="text"	class="form-control" /> <BR />
 								<label>Password</label> <input name="password" type="password"	class="form-control" /> <BR />
+								<input name="category" type="hidden" class="form-control" value="Website"/>
+								<p align="right"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button  type="submit" class="btn btn-success">Submit</button></p>
+								</form>
 							</div>
 			   				<div class="BankCard hide" >
+			   					<form method="POST" action="add.do">
+			   					<label>Reference</label> <input name="reference" type="text" class="form-control" /> <BR />
         						<label>Card Number</label> <input name="doc_num" type="text" class="form-control" /> <BR />
-        						<label>Validity of the Card</label> <input name="val_date" type="date" id="dateDefault" class="form-control"  ><BR />
+        						<label>Validity of the Card</label> <input name="val_date" type="date" class="form-control"  ><BR />
         						<label>Name on the Card</label> <input name="doc_name" type="text" class="form-control" /> <BR />
         						<label>CVV</label> <input name="cvv" type="password" class="form-control" /> <BR />
+        						<input name="category" type="hidden" class="form-control" value="BankCard"/>
+        						<p align="right"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button  type="submit" class="btn btn-success">Submit</button></p>
+        						</form>
 							</div>
 			        		<div class="Passport hide" >
+			        			<form method="POST" action="add.do">
+			        			<label>Reference</label> <input name="reference" type="text" class="form-control" /> <BR />
         						<label>Passport Number</label> <input name="doc_num" type="text" class="form-control" /> <BR />
         						<label>Passport type</label> <input name="type_info" type="text" class="form-control" /> <BR />
         						<label>Nationality</label> <input name="nation" type="text" class="form-control" /> <BR />
         						<label>Name on the Passport</label> <input name="doc_name" type="text" class="form-control" /> <BR />
         						<label>Address on the Passport</label> <input name="address" type="text" class="form-control" /> <BR />
         						<label>Date of Expiry</label> <input type="date" name="val_date"  class="form-control" /><BR />
+        						<input name="category" type="hidden" class="form-control" value="Passport"/>
+        						<p align="right"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button  type="submit" class="btn btn-success">Submit</button></p>
+        						</form>
         					</div>
         		        	<div class="AadharCard hide" >
+        		        		<form method="POST" action="add.do">
+        		        		<label>Reference</label> <input name="reference" type="text" class="form-control" /> <BR />
         						<label>Aadhar Number</label> <input name="doc_num" type="text" class="form-control" /> <BR />
         						<label>Name on Aadhar</label> <input name="doc_name" type="text" class="form-control" /> <BR />
         						<label>Date of Birth </label><input name="val_date" type="date" class="form-control"  /> <BR />
         						<label>Address</label> <input name="address" type="text" class="form-control" /> <BR />
+        						<input name="category" type="hidden" class="form-control" value="AadharCard"/>
+        						<p align="right"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button  type="submit" class="btn btn-success">Submit</button></p>
+        						</form>
         					</div>
         		        	<div class="License hide" >
+        		        		<form method="POST" action="add.do">
+        		        		<label>Reference</label> <input name="reference" type="text" class="form-control" /> <BR />
         						<label>License Number</label> <input name="doc_num" type="text" class="form-control" /> <BR />
         						<label>Name on License</label> <input name="doc_name" type="text" class="form-control" /> <BR />
         						<label>Valid Upto</label> <input name="val_date" type="date" class="form-control"   /> <BR />
         						<label>Address</label> <input name="address" type="text" class="form-control" /> <BR />
+        						<input name="category" type="hidden" class="form-control" value="License"/>
+        						<p align="right"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button  type="submit" class="btn btn-success">Submit</button></p>
+        						</form>
         					</div>
         		        	<div class="Others hide" >
+        		        		<form method="POST" action="add.do">
+        		        		<label>Reference</label> <input name="reference" type="text" class="form-control" /> <BR />
         						<label>Document Number</label> <input name="doc_num" type="text" class="form-control" /> <BR />
         						<label>Name on the Document</label> <input name="doc_name" type="text" class="form-control" /> <BR />
         						<label>Information about Document</label> <input name="type_info" type="text" class="form-control" /> <BR />
         						<label>Valid Upto</label> <input name="val_date" type="date" class="form-control"  /> <BR />
         						<label>Address</label> <input name="address" type="text" class="form-control" /> <BR />
+        						<input name="category" type="hidden" class="form-control" value="Others"/>
+        						<p align="right"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button  type="submit" class="btn btn-success">Submit</button></p>
+        						</form>
         					</div>
         				</div>
 		<script>
@@ -394,9 +445,6 @@
  				 display: none;
 				}
         </style>
-						<p align="right"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button  type="submit" class="btn btn-success">Submit</button></p>
-					</form>
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -406,5 +454,6 @@
 		</div>
 		</div>
 	</div>
- 
-<%@include file="/common/footer.jspf" %>
+</div>
+</body>
+</html>

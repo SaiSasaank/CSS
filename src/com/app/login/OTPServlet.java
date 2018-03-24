@@ -11,27 +11,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.app.mail.SendMail;
+import com.app.user.User;
 
 
 @WebServlet("/otp.do")
 public class OTPServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	String num="4444";
+	String num="";
 	
        
 	//private OTPService OTPValidation = new OTPService();
-	//private SendMail sendmail = new SendMail();
-
+	private SendMail sendmail = new SendMail();
+	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//Random r = new Random();
-		//int OTP = r.nextInt((9999 - 999) + 1) + 999;
-		//num =  Integer.toString(OTP);
-		//String num2 = "Your OTP is:"+num;
-		//System.out.println(num);
-		//sendmail.send(num2);
+		String email = (String) request.getSession().getAttribute("email");
+		Random r = new Random();
+		int OTP = r.nextInt((9999 - 999) + 1) + 999;
+		num =  Integer.toString(OTP);
+		String num2 = "Your OTP is:"+num;
+		System.out.println(num);
+		sendmail.send(num2,email);
+		System.out.println(email);
 		request.getRequestDispatcher("view/OTP.jsp").forward(request, response);
 
 	}

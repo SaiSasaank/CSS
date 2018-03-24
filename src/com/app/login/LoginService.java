@@ -24,9 +24,12 @@ public class LoginService {
 
 				if (rs != null && rs.next()) {
 					user.setUsername(rs.getString("username"));
+					user.setFullname(rs.getString("fullname"));
+					user.setEmail(rs.getString("email"));
+					
 					return true;
-
 				}
+				
 
 			}
 
@@ -37,4 +40,29 @@ public class LoginService {
 		return false;
 	}
 
+	public String getSaltDB(String name, User user,Connection conn) {
+		String s="";
+		try {
+			
+			if (conn != null && !conn.isClosed()) {
+				ResultSet rs = null;
+				String sql = "select salt from login where username=?";
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, name);
+				rs = pstmt.executeQuery();
+				if(rs!=null && rs.next())
+				{
+					s = rs.getString(1);
+					System.out.println("Salt in service:"+s);
+					
+				}
+				
+			}
+		} catch (SQLException e) {
+			// log(e.getMessage(), e);
+			e.printStackTrace();
+		}
+		return s;
+
+	}
 }

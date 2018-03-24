@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.app.hashtool.PasswordTool;
+
 public class RegistrationService {
 	
 	public boolean isUserRegistered(String name,String fullname,String email, String password, Connection conn) {
@@ -16,16 +18,16 @@ public class RegistrationService {
 
 				Statement stmt = conn.createStatement();
 				String sql = "select * from login where username='" + name + "'";
-				//System.out.println(sql);
 				rs = stmt.executeQuery(sql);
 				if(rs.next()) {
-					//System.out.println("aaa");
 				  usernameExists = true;
 				}
 				else
 				{
-					//System.out.println("sss");
-					String insertSql = "insert into login (username,fullname,email, password) values('" + name + "','" + fullname + "','" + email + "', '"+password+"');";
+					PasswordTool pt = new PasswordTool();
+					String salt = pt.GenerateSalt();
+					String storedHash = pt.get_SHA_512_SecurePassword(password, salt);
+					String insertSql = "insert into login (username,fullname,email, password,salt) values('" + name + "','" + fullname + "','" + email + "', '"+storedHash+"', '"+salt+"');";
 					stmt.executeUpdate(insertSql);
 					usernameExists=false;
 					return usernameExists;
@@ -40,5 +42,7 @@ public class RegistrationService {
 		return usernameExists;
 		
 	}
+	
+	
 
 }

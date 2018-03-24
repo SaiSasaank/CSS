@@ -8,11 +8,13 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import com.app.user.User;
+
 //import com.app.user.User;
 
 public class SendMail {
 
-	public void send(String msg) {
+	public void send(String msg,String email) {
 		// create an instance of Properties Class
 		Properties props = new Properties();
 		//User user=new User();
@@ -47,7 +49,8 @@ public class SendMail {
 
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("confidentialsystem2018@gmail.com"));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress("confidentialsystem2018@gmail.com"));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+			System.out.println(email);
 			message.setSubject("CSS - One Time Password");
 			message.setText(msg);
 

@@ -1,6 +1,8 @@
  <header>
- <nav class="navbar navbar-light fixed-top " style="background-color: #17A589;">
-  <a class="navbar-brand" href="#"><font size="6" color="white"><img src="images/shield-lock.png" height="55" width="60">&nbspCSS</font></a>
+ <nav class="navbar navbar-light fixed-top " style="background-color: #839192;">
+  <a class="navbar-brand" href="#"><font size="6" color="white">
+   <button type="button" id="sidebarCollapse" class="btn btn-outline-dark navbar-btn">
+  <img src="images/shield-lock.png" height="55" width="60"></button>&nbspCSS</font></a>
   <ul class="navbar-nav">
       <li class="nav-item">
          <font color="white" size="5">Hi, ${name}</font>

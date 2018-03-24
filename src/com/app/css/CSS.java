@@ -10,14 +10,15 @@ public class CSS {
 	private String doc_num;
 	private String val_date;
 	private String doc_name;
-	private int cvv;
+	private String cvv;
 	private String type_info;
 	private String nation;
 	private String address;
 	private String reference;
 	private String category;
 	private String uname;
-	public int cat_id;
+	private int cat_id;
+	private String salt;
 	
 	public int getCss_id() {
 		return css_id;
@@ -75,12 +76,12 @@ public class CSS {
 		this.doc_name = doc_name;
 	}
 	
-	public int getCvv() {
+	public String  getCvv() {
 		return cvv;
 	}
 
-	public void setCvv(int cvv) {
-		this.cvv = cvv;
+	public void setCvv(String  string) {
+		this.cvv = string;
 	}
 	
 	public String getType_info() {
@@ -138,4 +139,13 @@ public class CSS {
 	public void setCat_id(int cat_id2) {
 		this.cat_id = cat_id2;
 	}
+	
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+	
 }

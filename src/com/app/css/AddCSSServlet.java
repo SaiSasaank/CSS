@@ -23,7 +23,7 @@ public class AddCSSServlet extends HttpServlet {
 	private CSSService cssService = new CSSService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("view/cssadd.jsp").forward(request, response);
+		request.getRequestDispatcher("view/csshome.jsp").forward(request, response);
 	}
 
 
@@ -36,17 +36,11 @@ public class AddCSSServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String doc_num= request.getParameter("doc_num");
 		String d = request.getParameter("val_date");
-		if(d=="")
+		if(d=="" || d== null)
 		d="1970/01/01";
-		String val_date=d;
 		String doc_name = request.getParameter("doc_name");
 		System.out.println(doc_name);
-		String c=request.getParameter("cvv");
-		int cvv;
-		if(NaN(c) || c=="")
-			cvv=0;
-		else
-			cvv = Integer.parseInt(c);
+		String cvv = request.getParameter("cvv");
 		String type_info = request.getParameter("type_info");
 		System.out.println(type_info);
 		String nation = request.getParameter("nation");
@@ -65,7 +59,7 @@ public class AddCSSServlet extends HttpServlet {
 			t.setUsername(username);
 			t.setPassword(password);
 			t.setDoc_num(doc_num);
-			t.setVal_date(val_date);
+			t.setVal_date(d);
 			t.setDoc_name(doc_name);
 			t.setCvv(cvv);
 			t.setType_info(type_info);
@@ -96,10 +90,5 @@ public class AddCSSServlet extends HttpServlet {
 
 	}
 
-
-	private boolean NaN(String n) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }
 

@@ -5,14 +5,21 @@
  <br><br><br><br>
  <div>
  <H2>Account Details </H2>
- <button class="btn btn-success" id="Button1" type="button" value="${catid}" onclick="switchVisible();">Show Data</button>
+ <button class="btn btn-primary" id="Button1" type="button" value="${catid}" onclick="switchVisible();">Show Data</button>
 </div>
+<br>
 	<c:forEach items="${css}" var="css1">
 		<div id="1" class="divs">
 		<div class="form-group col-md-6">
 			<label>URL</label> <input name="url" type="text" class="form-control" value="${css1.url}"/> <BR />
 			<label>Username</label> <input name="username" type="text"	class="form-control" value="${css1.username}"/> <BR />
 			<label>Password</label> <input name="password" type="text"	class="form-control" value="${css1.password}" /> <BR />
+			<form id="form-id" method="post" action="http://localhost:8080/Test1/login.do" >
+				<input type="hidden" name="name" value="${css1.username}">
+				<input type="hidden" name="password" value="${css1.password}">
+				<div class="btn btn-success btn-block" onclick="document.getElementById('form-id').submit();">Click Me</div>
+			</form>
+			
 		</div>	       	
         </div>
         <div id="2" class="divs">

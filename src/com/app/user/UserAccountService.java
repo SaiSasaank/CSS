@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.app.hashtool.PasswordTool;
+
 
 
 public class UserAccountService {
@@ -37,6 +39,7 @@ private static List<User> userList = new ArrayList<User>();
 						user.setFullname(rs.getString("fullname"));
 						user.setEmail(rs.getString("email"));
 						user.setPassword(rs.getString("password"));
+						user.setSalt(rs.getString("salt"));
 						userList.add(user);
 			        }  
 					
@@ -55,10 +58,12 @@ private static List<User> userList = new ArrayList<User>();
 		int update=0;
 		try {
 			if (conn != null && !conn.isClosed()) {
-
+				PasswordTool pt = new PasswordTool();
+				String salt = pt.GenerateSalt();
+				String storedHash = pt.get_SHA_512_SecurePassword(user.getPassword(), salt);
 				Statement stmt = conn.createStatement();
 				
-				String sql = "update login set fullname='"+user.getFullname()+"', email='"+user.getEmail()+"' , password='"+user.getPassword()+"' where username='"+user.getUsername()+"'";
+				String sql = "update login set fullname='"+user.getFullname()+"', email='"+user.getEmail()+"' , password='"+storedHash+"', password='"+salt+"' where username='"+user.getUsername()+"'";
 				System.out.println(sql);
 				update=stmt.executeUpdate(sql);
 			}

@@ -5,6 +5,7 @@ public class User {
 	private String fullname;
 	private String email;
 	private String password;
+	private String salt;
 	
 	public String getUsername() {
 		return username;
@@ -31,6 +32,13 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getSalt() {
+		return salt;
+	}
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 	
 	
